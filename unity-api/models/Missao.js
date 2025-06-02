@@ -4,6 +4,10 @@ const MissaoSchema = new mongoose.Schema({
   nomeMissao: { 
     type: String, required: true 
   },
+  descricao: {
+    type: String, 
+    required: true
+  },
   estadoConclusao: { 
     type: String, 
     enum: ['NÃO INICIADO', 'EM ANDAMENTO', 'CONCLUIDA'], 

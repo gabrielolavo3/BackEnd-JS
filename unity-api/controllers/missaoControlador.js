@@ -1,10 +1,10 @@
 import Missao from "../models/Missao";
 
 export async function criarMissao (req, res) {
-    const { nomeJogo, nomeMissao, estadoConclusao } = req.body;
+    const { nomeJogo, nomeMissao, estadoConclusao, descricao } = req.body;
 
     try {
-        const novaMissao = new Missao({ nomeJogo, nomeMissao, estadoConclusao });
+        const novaMissao = new Missao({ nomeJogo, nomeMissao, estadoConclusao, descricao });
         await novaMissao.save();
         res.status(201).json({ mensagem: 'Missão criada com sucesso!', missao: novaMissao });
         
