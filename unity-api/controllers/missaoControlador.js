@@ -1,10 +1,10 @@
 import Missao from "../models/Missao";
 
 export async function criarMissao (req, res) {
-    const { nomeMissao, estadoConclusao } = req.body;
+    const { nomeJogo, nomeMissao, estadoConclusao } = req.body;
 
     try {
-        const novaMissao = new Missao({ nomeMissao, estadoConclusao });
+        const novaMissao = new Missao({ nomeJogo, nomeMissao, estadoConclusao });
         await novaMissao.save();
         res.status(201).json({ mensagem: 'Missão criada com sucesso!', missao: novaMissao });
         
@@ -13,9 +13,15 @@ export async function criarMissao (req, res) {
     }
 }
 
-export async function listarMissoes(req, res) {
+export async function listarMissoesPorJogo(req, res) {
+    const { nomeJogo } = req.params;
+    
+    if (!nomeJogo) {
+        return res.status(400).json({ mensagem: 'Nome do jogo é obrigatório.' });
+    }
+
     try {
-        const missoes = await Missao.find();
+        const missoes = await Missao.find({ nomeJogo });
         res.status(200).json(missoes);
 
     } catch (erro) {
@@ -29,6 +35,7 @@ export async function atualizarEstadoMissao(req, res) {
 
   // Validação do enum
   const estadosValidos = ['NÃO INICIADO', 'EM ANDAMENTO', 'CONCLUIDA'];
+
   if (!estadosValidos.includes(novoEstado)) {
     return res.status(400).json({ mensagem: 'Estado de conclusão inválido.' });
   }
