@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDatabase from './database/conexaoBanco.js';
 import rotasUsuario from './routes/rotasUsuario.js';
 import rotasJogo from './routes/rotasJogo.js';
+import rotasMissao from './routes/rotasMissao.js';
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use('/api/usuario', rotasUsuario);
 app.use('/api/jogo', rotasJogo);
+app.use('/api/missao', rotasMissao);
 
 connectDatabase()
   .then(() => {

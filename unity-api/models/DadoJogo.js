@@ -9,6 +9,15 @@ const dadoJogoSchema = new mongoose.Schema({
     type: String, 
     required: true 
 },
+  descricao: { 
+    type: String 
+},                   
+  dificuldadeTrabalhada: { 
+    type: String 
+},       
+  finalidade: { 
+    type: String 
+},
   estrelas: { 
     type: Number, 
     required: true 
