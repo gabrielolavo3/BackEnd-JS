@@ -1,11 +1,17 @@
 import Missao from "../models/Missao";
 
+// post
 export async function criarMissao (req, res) {
-    const { nomeJogo, nomeMissao, estadoConclusao, descricao } = req.body;
+    const { nomeJogo, 
+      nomeMissao, 
+      estadoConclusao, 
+      descricao 
+    } = req.body;
 
     try {
         const novaMissao = new Missao({ nomeJogo, nomeMissao, estadoConclusao, descricao });
         await novaMissao.save();
+
         res.status(201).json({ mensagem: 'Missão criada com sucesso!', missao: novaMissao });
         
     } catch (erro) {
@@ -13,6 +19,7 @@ export async function criarMissao (req, res) {
     }
 }
 
+// get
 export async function listarMissoesPorJogo(req, res) {
     const { nomeJogo } = req.params;
     
@@ -29,6 +36,7 @@ export async function listarMissoesPorJogo(req, res) {
     }
 }
 
+// put
 export async function atualizarEstadoMissao(req, res) {
   const { nomeMissao } = req.params;
   const { novoEstado } = req.body;

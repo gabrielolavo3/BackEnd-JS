@@ -14,9 +14,6 @@ const dadoJogoSchema = new mongoose.Schema({
 },                   
   dificuldadeTrabalhada: { 
     type: String 
-},       
-  finalidade: { 
-    type: String 
 },
   estrelas: { 
     type: Number, 

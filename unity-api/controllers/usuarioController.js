@@ -1,17 +1,17 @@
 import Usuario from '../models/Usuario.js';
 import Contador from '../models/Contador.js';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
-async function gerarProximoId(nome) {
-  const resultado = await Contador.findByIdAndUpdate(
-    nome,
-    { $inc: { sequencia: 1 } },
-    { new: true, upsert: true }
-  );
-  return resultado.sequencia;
-}
+// async function gerarProximoId(nome) {
+//   const resultado = await Contador.findByIdAndUpdate(
+//     nome,
+//     { $inc: { sequencia: 1 } },
+//     { new: true, upsert: true }
+//   );
+//   return resultado.sequencia;
+// }
 
+// post
 export async function cadastrarUsuario(req, res) {
   const { email, senha } = req.body;
   
@@ -34,6 +34,7 @@ export async function cadastrarUsuario(req, res) {
   }
 }
 
+// get
 export async function loginUsuario(req, res) {
   const { email, senha } = req.body;
   
@@ -48,10 +49,9 @@ export async function loginUsuario(req, res) {
       return res.status(401).json({ mensagem: 'Senha incorreta.' });
     }
 
-    const token = jwt.sign({ idUsuario: usuario.idUsuario }, 'segredoJWT', { expiresIn: '24h' });
-
-    res.status(200).json({ token, idUsuario: usuario.idUsuario });
+    res.status(200).json({ mensagem: 'Login realizado com sucesso!', idUsuario: usuario._id });
   } catch (erro) {
     res.status(500).json({ mensagem: 'Erro ao fazer login.', erro });
   }
 }
+
