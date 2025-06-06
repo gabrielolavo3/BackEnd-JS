@@ -1,10 +1,9 @@
 import express from 'express';
-import { criarDadosJogo, atualizarDadosJogo, buscarDadosPorUsuario } from '../controllers/dadoJogoController.js';
+import { upsertDadosJogo, buscarDadosJogo } from '../controllers/dadoJogoController.js';
 
 const router = express.Router();
 
-router.post('/criar', criarDadosJogo);
-router.put('/atualizar', atualizarDadosJogo);
-router.get('/dados/:idUsuario', buscarDadosPorUsuario);
+router.post('/criar_atualizar', upsertDadosJogo);
+router.get('/dados/:nome', buscarDadosJogo);
 
 export default router;

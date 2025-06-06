@@ -1,10 +1,9 @@
 import express from 'express'
-import { criarMissao, listarMissoesPorJogo, atualizarEstadoMissao } from '../controllers/missaoControlador.js'
+import { upsertMissao, listarMissoesPorJogo } from '../controllers/tarefaControlador.js'
 
 const router = express.Router();
 
-router.post('/criarMissao', criarMissao);
+router.post('/criar_atualizar', upsertMissao);
 router.get('/listarMissoes/:nomeJogo', listarMissoesPorJogo);
-router.put('/atualizarMissao/:nomeMissao', atualizarEstadoMissao);
 
 export default router;
